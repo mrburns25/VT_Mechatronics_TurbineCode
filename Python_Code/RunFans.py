@@ -14,42 +14,42 @@ import sys
 
 ######################################################################################
 
-#Define vairables
+#Define variables
 Error = 0; #Start with no errors
 prev_time = 0 #Previous time holder
 current_time = 0 #Current time holder
 time_delta = 0 #Change in time holder
 interval = 1 #Interval to sample TACs (in seconds)
 
-Prev_TAC_Val_F1_1 = 0 #Prevoius TAC value for F1_1
+Prev_TAC_Val_F1_1 = 0 #Previous TAC value for F1_1
 TAC_Val_F1_1 = 0 #Current TAC value for F1_1
 Count_F1_1 = 0 #Number of rises and falls in TAC signal for F1_1
 
-Prev_TAC_Val_F1_2 = 0 #Prevoius TAC value for F1_2
+Prev_TAC_Val_F1_2 = 0 #Previous TAC value for F1_2
 TAC_Val_F1_2 = 0 #Current TAC value for F1_2
 Count_F1_2 = 0 #Number of rises and falls in TAC signal for F1_2
 
-Prev_TAC_Val_F2_1 = 0 #Prevoius TAC value for F2_1
+Prev_TAC_Val_F2_1 = 0 #Previous TAC value for F2_1
 TAC_Val_F2_1 = 0 #Current TAC value for F2_1
 Count_F2_1 = 0 #Number of rises and falls in TAC signal for F2_1
 
-Prev_TAC_Val_F2_2 = 0 #Prevoius TAC value for F2_2
+Prev_TAC_Val_F2_2 = 0 #Previous TAC value for F2_2
 TAC_Val_F2_2 = 0 #Current TAC value for F2_2
 Count_F2_2 = 0 #Number of rises and falls in TAC signal for F2_2
 
-Prev_TAC_Val_F3_1 = 0 #Prevoius TAC value for F3_1
+Prev_TAC_Val_F3_1 = 0 #Previous TAC value for F3_1
 TAC_Val_F3_1 = 0 #Current TAC value for F3_1
 Count_F3_1 = 0 #Number of rises and falls in TAC signal for F3_1
 
-Prev_TAC_Val_F3_2 = 0 #Prevoius TAC value for F3_2
+Prev_TAC_Val_F3_2 = 0 #Previous TAC value for F3_2
 TAC_Val_F3_2 = 0 #Current TAC value for F3_2
 Count_F3_2 = 0 #Number of rises and falls in TAC signal for F3_2
 
-Prev_TAC_Val_F4_1 = 0 #Prevoius TAC value for F4_1
+Prev_TAC_Val_F4_1 = 0 #Previous TAC value for F4_1
 TAC_Val_F4_1 = 0 #Current TAC value for F4_1
 Count_F4_1 = 0 #Number of rises and falls in TAC signal for F4_1
 
-Prev_TAC_Val_F4_2 = 0 #Prevoius TAC value for F4_2
+Prev_TAC_Val_F4_2 = 0 #Previous TAC value for F4_2
 TAC_Val_F4_2 = 0 #Current TAC value for F4_2
 Count_F4_2 = 0 #Number of rises and falls in TAC signal for F4_2
 
@@ -72,7 +72,7 @@ PWM.start("P8_19",0,25000) #Funnel 2
 PWM.start("P9_14",0,25000) #Funnel 3 
 PWM.start("P9_16",0,25000) #Funnel 4 
 
-#Setup TAC pins
+#Set up TAC pins
 GPIO.setup("P8_7",GPIO.IN)
 GPIO.setup("P8_9",GPIO.IN)
 

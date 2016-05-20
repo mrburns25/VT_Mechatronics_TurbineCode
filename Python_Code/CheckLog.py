@@ -39,7 +39,7 @@ lcd_rows    = 4
 lcd = LCD.Adafruit_CharLCD(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lcd_d7, lcd_columns, lcd_rows, lcd_backlight)
 
 #Checks to see if file is there
-#If true, contiue code, if not, end code
+#If true, continue code, if not, end code
 if (os.path.isfile('/usr/PythonCode/RunLog.txt') != 1):
 	print("Run Log File Not Found")
 	sys.exit()
@@ -92,18 +92,18 @@ while(1):
 
 
 		if Counter(Status) == Counter('Green'):
-			#Recreate the LCD object becuase it makes the code work
+			#Recreate the LCD object because it makes the code work
 			lcd = LCD.Adafruit_CharLCD(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lcd_d7, lcd_columns, lcd_rows, lcd_backlight)
 			lcd.message("System Green\nNo Errors")
 			GPIO.output("P8_29",GPIO.HIGH) #GREEN
 		elif Counter(Status) == Counter('Blue'):
-			#Recreate the LCD object becuase it makes the code work
+			#Recreate the LCD object because it makes the code work
 			lcd = LCD.Adafruit_CharLCD(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lcd_d7, lcd_columns, lcd_rows, lcd_backlight)
 			lcd.message("Fans Spinning Up")
 			GPIO.output("P8_39",GPIO.HIGH) #BLUE
 		elif Counter(Status) == Counter('Red'):
-			#Recreate the LCD object becuase it makes the code work
+			#Recreate the LCD object because it makes the code work
 			lcd = LCD.Adafruit_CharLCD(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lcd_d7, lcd_columns, lcd_rows, lcd_backlight)
 			lcd.message("Errors")
 			GPIO.output("P8_27",GPIO.HIGH) #RED
-			#Erros will be printed to LCD
+			#Errors will be printed to LCD
