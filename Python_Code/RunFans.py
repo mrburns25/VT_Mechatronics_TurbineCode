@@ -15,6 +15,10 @@ import sys
 ######################################################################################
 
 #Define variables
+#Error related variables 
+Check_Errors = False
+
+#
 Error = 0; #Start with no errors
 prev_time = 0 #Previous time holder
 current_time = 0 #Current time holder
