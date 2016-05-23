@@ -21,41 +21,41 @@ import sys
 
 ######################################################################################
 
-#Define variables
+#Define vairables
 prev_time = 0 #Previous time holder
 current_time = 0 #Current time holder
 time_delta = 0 #Change in time holder
 interval = 1 #Interval to sample TACs (in seconds)
 
-Prev_TAC_Val_F1_1 = 0 #Previous TAC value for F1_1
+Prev_TAC_Val_F1_1 = 0 #Prevoius TAC value for F1_1
 TAC_Val_F1_1 = 0 #Current TAC value for F1_1
 Count_F1_1 = 0 #Number of rises and falls in TAC signal for F1_1
 
-Prev_TAC_Val_F1_2 = 0 #Previous TAC value for F1_2
+Prev_TAC_Val_F1_2 = 0 #Prevoius TAC value for F1_2
 TAC_Val_F1_2 = 0 #Current TAC value for F1_2
 Count_F1_2 = 0 #Number of rises and falls in TAC signal for F1_2
 
-Prev_TAC_Val_F2_1 = 0 #Previous TAC value for F2_1
+Prev_TAC_Val_F2_1 = 0 #Prevoius TAC value for F2_1
 TAC_Val_F2_1 = 0 #Current TAC value for F2_1
 Count_F2_1 = 0 #Number of rises and falls in TAC signal for F2_1
 
-Prev_TAC_Val_F2_2 = 0 #Previous TAC value for F2_2
+Prev_TAC_Val_F2_2 = 0 #Prevoius TAC value for F2_2
 TAC_Val_F2_2 = 0 #Current TAC value for F2_2
 Count_F2_2 = 0 #Number of rises and falls in TAC signal for F2_2
 
-Prev_TAC_Val_F3_1 = 0 #Previous TAC value for F3_1
+Prev_TAC_Val_F3_1 = 0 #Prevoius TAC value for F3_1
 TAC_Val_F3_1 = 0 #Current TAC value for F3_1
 Count_F3_1 = 0 #Number of rises and falls in TAC signal for F3_1
 
-Prev_TAC_Val_F3_2 = 0 #Previous TAC value for F3_2
+Prev_TAC_Val_F3_2 = 0 #Prevoius TAC value for F3_2
 TAC_Val_F3_2 = 0 #Current TAC value for F3_2
 Count_F3_2 = 0 #Number of rises and falls in TAC signal for F3_2
 
-Prev_TAC_Val_F4_1 = 0 #Previous TAC value for F4_1
+Prev_TAC_Val_F4_1 = 0 #Prevoius TAC value for F4_1
 TAC_Val_F4_1 = 0 #Current TAC value for F4_1
 Count_F4_1 = 0 #Number of rises and falls in TAC signal for F4_1
 
-Prev_TAC_Val_F4_2 = 0 #Previous TAC value for F4_2
+Prev_TAC_Val_F4_2 = 0 #Prevoius TAC value for F4_2
 TAC_Val_F4_2 = 0 #Current TAC value for F4_2
 Count_F4_2 = 0 #Number of rises and falls in TAC signal for F4_2
 
@@ -86,7 +86,7 @@ lcd_rows    = 4
 #Create LCD object
 lcd = LCD.Adafruit_CharLCD(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lcd_d7, lcd_columns, lcd_rows, lcd_backlight)
 
-#Set up relay control pins
+#Setup relay control pins
 GPIO.setup("P8_41",GPIO.OUT) #Funnel 1
 GPIO.output("P8_41",GPIO.HIGH)
 GPIO.setup("P8_42",GPIO.OUT) #Funnel 2
@@ -95,13 +95,13 @@ GPIO.setup("P8_43",GPIO.OUT) #Funnel 3
 GPIO.output("P8_43",GPIO.HIGH)
 GPIO.setup("P8_44",GPIO.OUT) #Funnel 4
 GPIO.output("P8_44",GPIO.HIGH)
-#print("Relay Control Pin Set up Complete")
+#print("Realy Control Pin Setup Complete")
 
 #Set up LED control
 GPIO.setup("P8_27",GPIO.OUT) #Red of RGB
 GPIO.setup("P8_29",GPIO.OUT) #Green of RGB
 GPIO.setup("P8_39",GPIO.OUT) #Blue of RGB
-#print("LED Control Pin Set up Complete")
+#print("LED Control Pin Setup Complete")
 
 #Start PWM pins
 #PWM.start(Channel, duty cycle, frequency)
@@ -109,7 +109,7 @@ PWM.start("P8_13",0,25000) #Funnel 1
 PWM.start("P8_19",0,25000) #Funnel 2 
 PWM.start("P9_14",0,25000) #Funnel 3 
 PWM.start("P9_16",0,25000) #Funnel 4 
-#print("PWM Fan Control Pin Set up Complete")
+#print("PWM Fan Control Pin Setup Complete")
 
 #Set up ADC
 ADC.setup()
@@ -117,7 +117,7 @@ ADC.setup()
 ######################################################################################
 
 lcd.clear()
-lcd.message("Set up Complete\nPress Enter to\nStart Tests")
+lcd.message("Setup Complete\nPress Enter to\nStart Tests")
 raw_input("Press Enter to start tests")
 
 
@@ -140,7 +140,7 @@ raw_input("LED Test Complete. Press Enter to Continue...")
 #Turn fan on and off
 #To turn fan off, put pin HIGH
 #To turn fan on, put pin LOW
-#Pins default to HIGH
+#Pins defualt to HIGH
 
 ######################################################################################
 

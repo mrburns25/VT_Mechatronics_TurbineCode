@@ -72,7 +72,7 @@ PWM.start("P8_19",0,25000) #Funnel 2
 PWM.start("P9_14",0,25000) #Funnel 3 
 PWM.start("P9_16",0,25000) #Funnel 4 
 
-#Set up TAC pins
+#Setup TAC pins
 GPIO.setup("P8_7",GPIO.IN)
 GPIO.setup("P8_9",GPIO.IN)
 
@@ -89,6 +89,12 @@ txt.close()
 #Turn on funnels in cascading order and check to make sure they are working
 #Turn on funnel 1
 GPIO.output("P8_41",GPIO.LOW)
+time.sleep(1)
+GPIO.output("P8_42",GPIO.LOW)
+time.sleep(1)
+GPIO.output("P8_43",GPIO.LOW)
+time.sleep(1)
+GPIO.output("P8_44",GPIO.LOW)
 
 #Wait till fans are at 0 PWM RPM
 time.sleep(7) #Seconds
@@ -135,18 +141,30 @@ if Count_F1_2/2 < 50 or Count_F1_2/2 > 53:
 raw_input("Press Enter to 25 Percent PWM...")
 
 PWM.set_duty_cycle("P8_13",25)
+PWM.set_duty_cycle("P8_19",25)
+PWM.set_duty_cycle("P9_14",25)
+PWM.set_duty_cycle("P9_16",25)
 
 raw_input("PWM 25 Percent\nPress Enter to 50 Percent PWM...")
 
 PWM.set_duty_cycle("P8_13",50)
+PWM.set_duty_cycle("P8_19",50)
+PWM.set_duty_cycle("P9_14",50)
+PWM.set_duty_cycle("P9_16",50)
 
 raw_input("PWM 50 Percent\nPress Enter to 75 Percent PWM...")
 
 PWM.set_duty_cycle("P8_13",75)
+PWM.set_duty_cycle("P8_19",75)
+PWM.set_duty_cycle("P9_14",75)
+PWM.set_duty_cycle("P9_16",75)
 
 raw_input("PWM 75 Percent\nPress Enter to 100 Percent PWM...")
 
 PWM.set_duty_cycle("P8_13",100)
+PWM.set_duty_cycle("P8_19",100)
+PWM.set_duty_cycle("P9_14",100)
+PWM.set_duty_cycle("P9_16",100)
 
 raw_input("PWM 100 Percent\nPress Enter to End")
 
@@ -163,7 +181,10 @@ elif Error == 1:
 	txt.write("Red")
 	txt.close()
 
+txt = open('/usr/PythonCode/RunLog.txt','w') 
+txt.write("Green")
 
+txt.close()
 #Clean up pins
 GPIO.cleanup()
 PWM.cleanup()
