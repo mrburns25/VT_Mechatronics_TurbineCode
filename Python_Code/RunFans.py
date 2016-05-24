@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 #Creation Date: 02/24/2016
-#Last Edited: 03/08/2016
+#Last Edited: 05/23/2016
 #Author: Clinton Burns
 
 #This code will control the fans and check for
@@ -17,13 +17,13 @@ import sys
 #Define variables
 #Error related variables 
 Check_Errors = False
+Error = list(); #Start error list with no errors
 
-#
-Error = 0; #Start with no errors
+#TAC related variables
+interval = 1 #Interval to sample TACs (in seconds)
 prev_time = 0 #Previous time holder
 current_time = 0 #Current time holder
 time_delta = 0 #Change in time holder
-interval = 1 #Interval to sample TACs (in seconds)
 
 Prev_TAC_Val_F1_1 = 0 #Previous TAC value for F1_1
 TAC_Val_F1_1 = 0 #Current TAC value for F1_1
@@ -76,9 +76,15 @@ PWM.start("P8_19",0,25000) #Funnel 2
 PWM.start("P9_14",0,25000) #Funnel 3 
 PWM.start("P9_16",0,25000) #Funnel 4 
 
-#Setup TAC pins
-GPIO.setup("P8_7",GPIO.IN)
-GPIO.setup("P8_9",GPIO.IN)
+#Set up TAC pins
+GPIO.setup("P8_7",GPIO.IN,0) #Funnel 1 Fan 1 (F1_1)
+GPIO.setup("P8_9",GPIO.IN,0) #Funnel 1 Fan 2 (F1_2)
+GPIO.setup("P8_11",GPIO.IN,0) #Funnel 2 Fan 1 (F2_1)
+GPIO.setup("P8_15",GPIO.IN,0) #Funnel 2 Fan 2 (F2_2)
+GPIO.setup("P8_17",GPIO.IN,0) #Funnel 3 Fan 1 (F3_1)
+GPIO.setup("P8_26",GPIO.IN,0) #Funnel 3 Fan 2 (F3_2)
+GPIO.setup("P8_28",GPIO.IN,0) #Funnel 4 Fan 1 (F4_1)
+GPIO.setup("P8_30",GPIO.IN,0) #Funnel 4 Fan 2 (F4_2)
 
 ######################################################################################
 
@@ -93,12 +99,6 @@ txt.close()
 #Turn on funnels in cascading order and check to make sure they are working
 #Turn on funnel 1
 GPIO.output("P8_41",GPIO.LOW)
-time.sleep(1)
-GPIO.output("P8_42",GPIO.LOW)
-time.sleep(1)
-GPIO.output("P8_43",GPIO.LOW)
-time.sleep(1)
-GPIO.output("P8_44",GPIO.LOW)
 
 #Wait till fans are at 0 PWM RPM
 time.sleep(7) #Seconds
