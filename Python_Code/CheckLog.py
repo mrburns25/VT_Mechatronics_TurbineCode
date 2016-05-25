@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 #Creation Date: 02/08/2016
-#Last Edited: 02/24/2016
+#Last Edited: 05/25/2016
 #Author: Clinton Burns
 
 #This code will check the run log for the fan code.
@@ -41,6 +41,8 @@ lcd = LCD.Adafruit_CharLCD(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lcd_d7, lcd_c
 #Checks to see if file is there
 #If true, continue code, if not, end code
 if (os.path.isfile('/usr/PythonCode/RunLog.txt') != 1):
+	lcd.clear()
+	lcd.message("Run Log File Not Found")
 	print("Run Log File Not Found")
 	sys.exit()
 
@@ -99,7 +101,7 @@ while(1):
 		elif Counter(Status) == Counter('Blue'):
 			#Recreate the LCD object because it makes the code work
 			lcd = LCD.Adafruit_CharLCD(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lcd_d7, lcd_columns, lcd_rows, lcd_backlight)
-			lcd.message("Fans Spinning Up")
+			lcd.message("Turbine Spinning Up")
 			GPIO.output("P8_39",GPIO.HIGH) #BLUE
 		elif Counter(Status) == Counter('Red'):
 			#Recreate the LCD object because it makes the code work

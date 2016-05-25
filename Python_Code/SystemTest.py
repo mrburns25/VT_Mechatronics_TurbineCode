@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 
 #Creation Date: 01/20/2016
-#Last Edited: 03/08/2016
+#Last Edited: 05/25/2016
 #Author: Clinton Burns
 
 #This code is used to test the different systems
-#It will test the RGB LED, the Fan Control Realy, PWM signals,
+#It will test the RGB LED, the Fan Control Relay, PWM signals,
 #and the TACs from the fans
 #
-#This code will not run durring normal operation. This code will
+#This code will not run during normal operation. This code will
 #only be used by someone who is trying to debug an issue.
 #MAKE SURE THE CHECK LOG CODE IS NOT RUNNING WHEN THIS IS EXECUTED
 
@@ -21,41 +21,41 @@ import sys
 
 ######################################################################################
 
-#Define vairables
+#Define variables
 prev_time = 0 #Previous time holder
 current_time = 0 #Current time holder
 time_delta = 0 #Change in time holder
 interval = 1 #Interval to sample TACs (in seconds)
 
-Prev_TAC_Val_F1_1 = 0 #Prevoius TAC value for F1_1
+Prev_TAC_Val_F1_1 = 0 #Previous TAC value for F1_1
 TAC_Val_F1_1 = 0 #Current TAC value for F1_1
 Count_F1_1 = 0 #Number of rises and falls in TAC signal for F1_1
 
-Prev_TAC_Val_F1_2 = 0 #Prevoius TAC value for F1_2
+Prev_TAC_Val_F1_2 = 0 #Previous TAC value for F1_2
 TAC_Val_F1_2 = 0 #Current TAC value for F1_2
 Count_F1_2 = 0 #Number of rises and falls in TAC signal for F1_2
 
-Prev_TAC_Val_F2_1 = 0 #Prevoius TAC value for F2_1
+Prev_TAC_Val_F2_1 = 0 #Previous TAC value for F2_1
 TAC_Val_F2_1 = 0 #Current TAC value for F2_1
 Count_F2_1 = 0 #Number of rises and falls in TAC signal for F2_1
 
-Prev_TAC_Val_F2_2 = 0 #Prevoius TAC value for F2_2
+Prev_TAC_Val_F2_2 = 0 #Previous TAC value for F2_2
 TAC_Val_F2_2 = 0 #Current TAC value for F2_2
 Count_F2_2 = 0 #Number of rises and falls in TAC signal for F2_2
 
-Prev_TAC_Val_F3_1 = 0 #Prevoius TAC value for F3_1
+Prev_TAC_Val_F3_1 = 0 #Previous TAC value for F3_1
 TAC_Val_F3_1 = 0 #Current TAC value for F3_1
 Count_F3_1 = 0 #Number of rises and falls in TAC signal for F3_1
 
-Prev_TAC_Val_F3_2 = 0 #Prevoius TAC value for F3_2
+Prev_TAC_Val_F3_2 = 0 #Previous TAC value for F3_2
 TAC_Val_F3_2 = 0 #Current TAC value for F3_2
 Count_F3_2 = 0 #Number of rises and falls in TAC signal for F3_2
 
-Prev_TAC_Val_F4_1 = 0 #Prevoius TAC value for F4_1
+Prev_TAC_Val_F4_1 = 0 #Previous TAC value for F4_1
 TAC_Val_F4_1 = 0 #Current TAC value for F4_1
 Count_F4_1 = 0 #Number of rises and falls in TAC signal for F4_1
 
-Prev_TAC_Val_F4_2 = 0 #Prevoius TAC value for F4_2
+Prev_TAC_Val_F4_2 = 0 #Previous TAC value for F4_2
 TAC_Val_F4_2 = 0 #Current TAC value for F4_2
 Count_F4_2 = 0 #Number of rises and falls in TAC signal for F4_2
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 #Creation Date: 02/24/2016
-#Last Edited: 05/23/2016
+#Last Edited: 05/25/2016
 #Author: Clinton Burns
 
 #This code will control the fans and check for
@@ -16,8 +16,9 @@ import sys
 
 #Define variables
 #Error related variables 
-Check_Errors = False
-Error = list(); #Start error list with no errors
+Autonomous = True
+Error_list = list()
+Error = 0
 
 #TAC related variables
 interval = 1 #Interval to sample TACs (in seconds)
@@ -97,6 +98,9 @@ txt.close()
 ######################################################################################
 
 #Turn on funnels in cascading order and check to make sure they are working
+#If there is an error in any fan, the program will throw the correct error 
+#code and then terminate.
+
 #Turn on funnel 1
 GPIO.output("P8_41",GPIO.LOW)
 
@@ -108,7 +112,7 @@ current_time = time.time()
 time_delta = current_time - prev_time
 #Read TAC to check speed for 1 second
 while time_delta < interval:
-	#Read TAC pin for F1.1 and F1.2
+	#Read TAC pin for F1_1 and F1_2
 	TAC_Val_F1_1 = GPIO.input("P8_7")
 	TAC_Val_F1_2 = GPIO.input("P8_9")
 
@@ -124,23 +128,115 @@ while time_delta < interval:
 	current_time = time.time()
 	time_delta = current_time - prev_time
 
+#Check to see if any errors with F1_1
 if Count_F1_1/2 < 50 or Count_F1_1/2 > 53:
-	Error = 1
-	#Write to file stating error
-	#txt = open('/usr/PythonCode/RunLog.txt','w') 
-	#txt.write("Red: F1_1")
-	#txt.close()
-	#sys.exit()
-
-
+	#Add error code 1 to error list
+	Error_list[Error] = 1
+	#Add 1 to error counter
+	Error = Error + 1
+	
+#Check to see if any errors with F1_2
 if Count_F1_2/2 < 50 or Count_F1_2/2 > 53:
-	Error = 2
-	#Write to file stating error
-	#txt = open('/usr/PythonCode/RunLog.txt','w') 
-	#txt.write("Red: F1_2")
-	#txt.close()
-	#sys.exit()
+	#Add error code 2 to error list
+	Error_list[Error] = 2
+	#Add 1 to error counter
+	Error = Error + 1
 
+#If any errors, send correct error code to the log file
+if len(Error_list) != 0:
+	#First check to see if errors are in both fans. If not
+	#see if either fan 1 or 2 had the error. Program will
+	#terminate if there is any error.
+	if Error_list.count(1) > 0 and Error_list.count(2) > 0:
+		#Errors in both fans: Error Code 3
+		txt = open('/usr/PythonCode/RunLog.txt','w') 
+		txt.write("Red\n")
+		txt.write("3")
+		txt.close()
+		sys.exit()
+	elif Error_list.count(1) > 0:
+		#Error in F1_1: Error Code 1
+		txt = open('/usr/PythonCode/RunLog.txt','w') 
+		txt.write("Red\n")
+		txt.write("1")
+		txt.close()
+		sys.exit()
+	elif Error_list.count(2) > 0:
+		#Error in F1_2: Error Code 2
+		txt = open('/usr/PythonCode/RunLog.txt','w') 
+		txt.write("Red\n")
+		txt.write("2")
+		txt.close()
+		sys.exit()
+		
+######################################################################################		
+#Turn on Funnel 2
+GPIO.output("P8_42",GPIO.LOW)
+
+#Wait till fans are at 0 PWM RPM
+time.sleep(7) #Seconds
+
+prev_time = time.time()
+current_time = time.time()
+time_delta = current_time - prev_time
+#Read TAC to check speed for 1 second
+while time_delta < interval:
+	#Read TAC pin for F2_1 and F2_2
+	TAC_Val_F2_1 = GPIO.input("P8_11")
+	TAC_Val_F2_2 = GPIO.input("P8_15")
+
+	#See if the state of the pin has changed
+	if TAC_Val_F2_1 != Prev_TAC_Val_F2_1:
+		Prev_TAC_Val_F2_1 = TAC_Val_F2_1
+		Count_F2_1 = Count_F2_1 + 1
+	
+	if TAC_Val_F2_2 != Prev_TAC_Val_F2_2:
+		Prev_TAC_Val_F2_2 = TAC_Val_F2_2
+		Count_F2_2 = Count_F2_2 + 1
+
+	current_time = time.time()
+	time_delta = current_time - prev_time
+
+#Check to see if any errors with F2_1
+if Count_F2_1/2 < 50 or Count_F2_1/2 > 53:
+	#Add error code 4 to error list
+	Error_list[Error] = 4
+	#Add 1 to error counter
+	Error = Error + 1
+	
+#Check to see if any errors with F2_2
+if Count_F2_2/2 < 50 or Count_F2_2/2 > 53:
+	#Add error code 5 to error list
+	Error_list[Error] = 5
+	#Add 1 to error counter
+	Error = Error + 1
+
+#If any errors, send correct error code to the log file
+if len(Error_list) != 0:
+	#First check to see if errors are in both fans. If not
+	#see if either fan 1 or 2 had the error. Program will
+	#terminate if there is any error.
+	if Error_list.count(4) > 0 and Error_list.count(5) > 0:
+		#Errors in both fans: Error Code 6
+		txt = open('/usr/PythonCode/RunLog.txt','w') 
+		txt.write("Red\n")
+		txt.write("6")
+		txt.close()
+		sys.exit()
+	elif Error_list.count(4) > 0:
+		#Error in F2_1: Error Code 4
+		txt = open('/usr/PythonCode/RunLog.txt','w') 
+		txt.write("Red\n")
+		txt.write("4")
+		txt.close()
+		sys.exit()
+	elif Error_list.count(2) > 0:
+		#Error in F2_2: Error Code 5
+		txt = open('/usr/PythonCode/RunLog.txt','w') 
+		txt.write("Red\n")
+		txt.write("5")
+		txt.close()
+		sys.exit()
 ######################################################################################
 raw_input("Press Enter to 25 Percent PWM...")
 
@@ -172,23 +268,10 @@ PWM.set_duty_cycle("P9_16",100)
 
 raw_input("PWM 100 Percent\nPress Enter to End")
 
-if Error == 0:
-	#Open file and write status
-	#If no errors, make LED Green
-	txt = open('/usr/PythonCode/RunLog.txt','w') 
-	txt.write("Green")
-	txt.close()
-elif Error == 1:
-	#Open file and write status
-	#If there are errors, make LED red
-	txt = open('/usr/PythonCode/RunLog.txt','w') 
-	txt.write("Red")
-	txt.close()
-
 txt = open('/usr/PythonCode/RunLog.txt','w') 
 txt.write("Green")
-
 txt.close()
+
 #Clean up pins
 GPIO.cleanup()
 PWM.cleanup()
