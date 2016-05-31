@@ -40,6 +40,18 @@ txt.write("Blue")
 txt.close()
 
 ######################################################################################
+
+#Stager start funnels
+GPIO.output("P8_41",GPIO.LOW)
+time.sleep(1)
+GPIO.output("P8_42",GPIO.LOW)
+time.sleep(1)
+GPIO.output("P8_43",GPIO.LOW)
+time.sleep(1)
+GPIO.output("P8_44",GPIO.LOW)
+time.sleep(1)
+
+######################################################################################
 raw_input("Press Enter to 25 Percent PWM...")
 
 PWM.set_duty_cycle("P8_13",25)

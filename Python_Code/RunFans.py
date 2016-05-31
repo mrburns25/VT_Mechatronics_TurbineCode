@@ -131,16 +131,12 @@ while time_delta < interval:
 #Check to see if any errors with F1_1
 if Count_F1_1/2 < 50 or Count_F1_1/2 > 53:
 	#Add error code 1 to error list
-	Error_list[Error] = 1
-	#Add 1 to error counter
-	Error = Error + 1
+	Error_list.append(1)
 	
 #Check to see if any errors with F1_2
 if Count_F1_2/2 < 50 or Count_F1_2/2 > 53:
 	#Add error code 2 to error list
-	Error_list[Error] = 2
-	#Add 1 to error counter
-	Error = Error + 1
+	Error_list.append(2)
 
 #If any errors, send correct error code to the log file
 if len(Error_list) != 0:
@@ -200,16 +196,12 @@ while time_delta < interval:
 #Check to see if any errors with F2_1
 if Count_F2_1/2 < 50 or Count_F2_1/2 > 53:
 	#Add error code 4 to error list
-	Error_list[Error] = 4
-	#Add 1 to error counter
-	Error = Error + 1
+	Error_list.append(4)
 	
 #Check to see if any errors with F2_2
 if Count_F2_2/2 < 50 or Count_F2_2/2 > 53:
 	#Add error code 5 to error list
-	Error_list[Error] = 5
-	#Add 1 to error counter
-	Error = Error + 1
+	Error_list.append(5)
 
 #If any errors, send correct error code to the log file
 if len(Error_list) != 0:
@@ -268,16 +260,12 @@ while time_delta < interval:
 #Check to see if any errors with F3_1
 if Count_F3_1/2 < 50 or Count_F3_1/2 > 53:
 	#Add error code 7 to error list
-	Error_list[Error] = 7
-	#Add 1 to error counter
-	Error = Error + 1
+	Error_list.append(7)
 	
 #Check to see if any errors with F3_2
 if Count_F3_2/2 < 50 or Count_F3_2/2 > 53:
 	#Add error code 8 to error list
-	Error_list[Error] = 8
-	#Add 1 to error counter
-	Error = Error + 1
+	Error_list.append(8)
 
 #If any errors, send correct error code to the log file
 if len(Error_list) != 0:
@@ -336,16 +324,12 @@ while time_delta < interval:
 #Check to see if any errors with F4_1
 if Count_F4_1/2 < 50 or Count_F4_1/2 > 53:
 	#Add error code 10 to error list
-	Error_list[Error] = 10
-	#Add 1 to error counter
-	Error = Error + 1
+	Error_list.append(10)
 	
 #Check to see if any errors with F4_2
 if Count_F4_2/2 < 50 or Count_F4_2/2 > 53:
 	#Add error code 11 to error list
-	Error_list[Error] = 11
-	#Add 1 to error counter
-	Error = Error + 1
+	Error_list.append(11)
 
 #If any errors, send correct error code to the log file
 if len(Error_list) != 0:
@@ -360,50 +344,29 @@ if len(Error_list) != 0:
 		txt.close()
 		sys.exit()
 	elif Error_list.count(10) > 0:
-		#Error in F3_1: Error Code 10
+		#Error in F4_1: Error Code 10
 		txt = open('/usr/PythonCode/RunLog.txt','w') 
 		txt.write("Red\n")
 		txt.write("10")
 		txt.close()
 		sys.exit()
 	elif Error_list.count(11) > 0:
-		#Error in F3_2: Error Code 11
+		#Error in F4_2: Error Code 11
 		txt = open('/usr/PythonCode/RunLog.txt','w') 
 		txt.write("Red\n")
 		txt.write("11")
 		txt.close()
 		sys.exit()
 ######################################################################################
-raw_input("Press Enter to 25 Percent PWM...")
-
-PWM.set_duty_cycle("P8_13",25)
-PWM.set_duty_cycle("P8_19",25)
-PWM.set_duty_cycle("P9_14",25)
-PWM.set_duty_cycle("P9_16",25)
-
-raw_input("PWM 25 Percent\nPress Enter to 50 Percent PWM...")
-
-PWM.set_duty_cycle("P8_13",50)
-PWM.set_duty_cycle("P8_19",50)
-PWM.set_duty_cycle("P9_14",50)
-PWM.set_duty_cycle("P9_16",50)
-
-raw_input("PWM 50 Percent\nPress Enter to 75 Percent PWM...")
-
-PWM.set_duty_cycle("P8_13",75)
-PWM.set_duty_cycle("P8_19",75)
-PWM.set_duty_cycle("P9_14",75)
-PWM.set_duty_cycle("P9_16",75)
-
-raw_input("PWM 75 Percent\nPress Enter to 100 Percent PWM...")
-
+#If no errors on any funnel, all the fans will be set to 100 PWM
 PWM.set_duty_cycle("P8_13",100)
 PWM.set_duty_cycle("P8_19",100)
 PWM.set_duty_cycle("P9_14",100)
 PWM.set_duty_cycle("P9_16",100)
 
-raw_input("PWM 100 Percent\nPress Enter to End")
+raw_input("Temporary Pause in Program. Press Enter to end.")
 
+#If no errors, set everything green
 txt = open('/usr/PythonCode/RunLog.txt','w') 
 txt.write("Green")
 txt.close()

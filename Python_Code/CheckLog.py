@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 #Creation Date: 02/08/2016
-#Last Edited: 05/25/2016
+#Last Edited: 05/31/2016
 #Author: Clinton Burns
 
 #This code will check the run log for the fan code.
@@ -38,6 +38,22 @@ lcd_rows    = 4
 #Create LCD object
 lcd = LCD.Adafruit_CharLCD(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lcd_d7, lcd_columns, lcd_rows, lcd_backlight)
 
+#Create error code list
+#0 index is blank so error 1 lines up with index 1
+err_msg = ['', 
+"ERROR CODE: 1\nF1_1 Not Working",
+"ERROR CODE: 2\nF1_2 Not Working",
+"ERROR CODE: 3\nFunnel 1 Not \nWorking",
+"ERROR CODE: 4\nF2_1 Not Working",
+"ERROR CODE: 5\nF2_2 Not Working",
+"ERROR CODE: 6\nFunnel 2 Not\nWorking",
+"ERROR CODE: 7\nF3_1 Not Working",
+"ERROR CODE: 8\nF3_2 Not Working",
+"ERROR CODE: 9\nFunnel 3 Not\nWorking",
+"ERROR CODE: 10\nF4_1 Not Working",
+"ERROR CODE: 11\nF4_2 Not Working",
+"ERROR CODE: 12\nFunnel 4 Not\nWorking"]
+
 #Checks to see if file is there
 #If true, continue code, if not, end code
 if (os.path.isfile('/usr/PythonCode/RunLog.txt') != 1):
@@ -51,15 +67,19 @@ OldModTime = os.path.getmtime('/usr/PythonCode/RunLog.txt')
 
 #Open file and read status
 txt = open('/usr/PythonCode/RunLog.txt') 
-Status = txt.read()
+status = txt.readlines()
 txt.close()
 
+#Remove '\n' character
+for i in range(0,len(status)):
+	status[i] = status[i].strip('\n')
+
 #Based on status, LED will change to a certain color
-if Counter(Status) == Counter('Green'):
+if status[0] == 'Green':
 	GPIO.output("P8_29",GPIO.HIGH) #GREEN
 	lcd.clear()
 	lcd.message("System Green\nNo Errors")
-elif Counter(Status) == Counter('Blue'):
+elif status[0] == 'Blue':
 	lcd.clear()
 	GPIO.output("P8_39",GPIO.HIGH) #BLUE
 else:
@@ -76,12 +96,18 @@ while(1):
 	#If they do not equal, read the file to see new status
 	#If they do equal, do nothing
 	if(NewModTime != OldModTime):
+		#Set old mod time to the new one
 		OldModTime = NewModTime
 		
 		#Open file and read status
+		del status[:]
 		txt = open('/usr/PythonCode/RunLog.txt') 
-		Status = txt.read()
+		status = txt.readlines()
 		txt.close()
+		
+		#Remove '\n' character
+		for c in range(0,len(status)):
+			status[c] = status[c].strip('\n')
 
 		#Clear screen
 		lcd.clear()
@@ -92,20 +118,21 @@ while(1):
 		GPIO.output("P8_39",GPIO.LOW)
 		GPIO.output("P8_27",GPIO.LOW)
 
-
-		if Counter(Status) == Counter('Green'):
+		if status[0] == 'Green':
 			#Recreate the LCD object because it makes the code work
 			lcd = LCD.Adafruit_CharLCD(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lcd_d7, lcd_columns, lcd_rows, lcd_backlight)
 			lcd.message("System Green\nNo Errors")
 			GPIO.output("P8_29",GPIO.HIGH) #GREEN
-		elif Counter(Status) == Counter('Blue'):
+		elif status[0] == 'Blue':
 			#Recreate the LCD object because it makes the code work
 			lcd = LCD.Adafruit_CharLCD(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lcd_d7, lcd_columns, lcd_rows, lcd_backlight)
 			lcd.message("Turbine Spinning Up")
 			GPIO.output("P8_39",GPIO.HIGH) #BLUE
-		elif Counter(Status) == Counter('Red'):
+		elif status[0] == 'Red':
 			#Recreate the LCD object because it makes the code work
 			lcd = LCD.Adafruit_CharLCD(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lcd_d7, lcd_columns, lcd_rows, lcd_backlight)
-			lcd.message("Errors")
+			
+			#Display correct error message based on error code
+			error_msg = err_msg[int(status[1])]
+			lcd.message(error_msg)
 			GPIO.output("P8_27",GPIO.HIGH) #RED
-			#Errors will be printed to LCD
