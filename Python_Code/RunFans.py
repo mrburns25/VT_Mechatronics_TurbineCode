@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 #Creation Date: 02/24/2016
-#Last Edited: 05/31/2016
+#Last Edited: 06/01/2016
 #Author: Clinton Burns
 
 #This code will control the fans and check for

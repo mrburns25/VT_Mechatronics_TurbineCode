@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 #Creation Date: 02/08/2016
-#Last Edited: 05/31/2016
+#Last Edited: 06/01/2016
 #Author: Clinton Burns
 
 #This code will check the run log for the fan code.
@@ -44,7 +44,8 @@ info_msg_list = ['Funnel 1: Testing...\nFunnel 2: Standby\nFunnel 3: Standby\nFu
 'Funnel 1: Ready\nFunnel 2: Testing...\nFunnel 3: Standby\nFunnel 4: Standby',
 'Funnel 1: Ready\nFunnel 2: Ready\nFunnel 3: Testing...\nFunnel 4: Standby',
 'Funnel 1: Ready\nFunnel 2: Ready\nFunnel 3: Ready\nFunnel 4: Testing...',
-'System Ready\nTurbine Spinning Up']
+'System Ready\nTurbine Spinning Up',
+'Turbine Demo Mode\nManual Ctrl Enabled\nError Checking OFF']
 
 #Create error code list
 #0 index is blank so error 1 lines up with index 1
@@ -60,7 +61,8 @@ err_msg_list = ['',
 "ERROR CODE: 9\nFunnel 3 Not\nWorking",
 "ERROR CODE: 10\nF4_1 Not Working",
 "ERROR CODE: 11\nF4_2 Not Working",
-"ERROR CODE: 12\nFunnel 4 Not\nWorking"]
+"ERROR CODE: 12\nFunnel 4 Not\nWorking",
+"ERROR CODE: 13\nFailed RunLog Read\nCheckLog.py Hold\nRestart Required"]
 
 #Checks to see if file is there
 #If true, continue code, if not, end code
@@ -112,6 +114,32 @@ while(1):
 		txt = open('/usr/PythonCode/RunLog.txt') 
 		status = txt.readlines()
 		txt.close()
+		
+		#Check to make sure list is not empty
+		#If empty try to read the file again
+		#If list is empty after 20 tries, exit with error 13
+		#and wait sit in while loop until manual restart
+		tries = 0
+		while len(status) == 0:
+			txt = open('/usr/PythonCode/RunLog.txt') 
+			status = txt.readlines()
+			txt.close()
+			
+			tries = tries + 1
+			
+			if tries >= 20:
+				#Turn off LED 
+				GPIO.output("P8_29",GPIO.LOW)
+				GPIO.output("P8_39",GPIO.LOW)
+				GPIO.output("P8_27",GPIO.LOW)
+				#Make LED RED
+				GPIO.output("P8_27",GPIO.HIGH) #RED
+				#Clear LCD and display error
+				lcd.clear()
+				lcd.message(err_msg_list[13])
+				while(1):
+					#Wait till manual restart
+					a = 0
 		
 		#Remove '\n' character
 		for c in range(0,len(status)):
