@@ -38,9 +38,17 @@ lcd_rows    = 4
 #Create LCD object
 lcd = LCD.Adafruit_CharLCD(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lcd_d7, lcd_columns, lcd_rows, lcd_backlight)
 
+#Create update list
+#This list will be used to inform user what stage the program is at 
+info_msg_list = ['Funnel 1: Testing...\nFunnel 2: Standby\nFunnel 3: Standby\nFunnel 4: Standby',
+'Funnel 1: Ready\nFunnel 2: Testing...\nFunnel 3: Standby\nFunnel 4: Standby',
+'Funnel 1: Ready\nFunnel 2: Ready\nFunnel 3: Testing...\nFunnel 4: Standby',
+'Funnel 1: Ready\nFunnel 2: Ready\nFunnel 3: Ready\nFunnel 4: Testing...',
+'System Ready\nTurbine Spinning Up']
+
 #Create error code list
 #0 index is blank so error 1 lines up with index 1
-err_msg = ['', 
+err_msg_list = ['', 
 "ERROR CODE: 1\nF1_1 Not Working",
 "ERROR CODE: 2\nF1_2 Not Working",
 "ERROR CODE: 3\nFunnel 1 Not \nWorking",
@@ -126,13 +134,16 @@ while(1):
 		elif status[0] == 'Blue':
 			#Recreate the LCD object because it makes the code work
 			lcd = LCD.Adafruit_CharLCD(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lcd_d7, lcd_columns, lcd_rows, lcd_backlight)
-			lcd.message("Turbine Spinning Up")
+			
+			#Display correct info message based on info number
+			info_msg = info_msg_list[int(status[1])]
+			lcd.message(info_msg)
 			GPIO.output("P8_39",GPIO.HIGH) #BLUE
 		elif status[0] == 'Red':
 			#Recreate the LCD object because it makes the code work
 			lcd = LCD.Adafruit_CharLCD(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lcd_d7, lcd_columns, lcd_rows, lcd_backlight)
 			
 			#Display correct error message based on error code
-			error_msg = err_msg[int(status[1])]
+			error_msg = err_msg_list[int(status[1])]
 			lcd.message(error_msg)
 			GPIO.output("P8_27",GPIO.HIGH) #RED

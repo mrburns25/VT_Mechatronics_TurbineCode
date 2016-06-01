@@ -90,12 +90,11 @@ GPIO.setup("P8_30",GPIO.IN,0) #Funnel 4 Fan 2 (F4_2)
 ######################################################################################
 
 #Open file and write status
-#Makes LED go blue indicating fans are starting 
+#Makes LED go blue and set to info to 0 
 txt = open('/usr/PythonCode/RunLog.txt','w') 
-txt.write("Blue")
+txt.write("Blue\n")
+txt.write("0")
 txt.close()
-
-######################################################################################
 
 #Turn on funnels in cascading order and check to make sure they are working
 #If there is an error in any fan, the program will throw the correct error 
@@ -166,6 +165,13 @@ if len(Error_list) != 0:
 		sys.exit()
 		
 ######################################################################################		
+#Open file and write status
+#Makes LED go blue and set to info to 1 
+txt = open('/usr/PythonCode/RunLog.txt','w') 
+txt.write("Blue\n")
+txt.write("1")
+txt.close()
+
 #Turn on Funnel 2
 GPIO.output("P8_42",GPIO.LOW)
 
@@ -230,6 +236,13 @@ if len(Error_list) != 0:
 		txt.close()
 		sys.exit()
 ######################################################################################
+#Open file and write status
+#Makes LED go blue and set to info to 2 
+txt = open('/usr/PythonCode/RunLog.txt','w') 
+txt.write("Blue\n")
+txt.write("2")
+txt.close()
+
 #Turn on Funnel 3
 GPIO.output("P8_43",GPIO.LOW)
 
@@ -294,6 +307,13 @@ if len(Error_list) != 0:
 		txt.close()
 		sys.exit()
 ######################################################################################
+#Open file and write status
+#Makes LED go blue and set to info to 3 
+txt = open('/usr/PythonCode/RunLog.txt','w') 
+txt.write("Blue\n")
+txt.write("3")
+txt.close()
+
 #Turn on Funnel 4
 GPIO.output("P8_44",GPIO.LOW)
 
@@ -358,6 +378,13 @@ if len(Error_list) != 0:
 		txt.close()
 		sys.exit()
 ######################################################################################
+#Open file and write status
+#Makes LED go blue and set to info to 4 
+txt = open('/usr/PythonCode/RunLog.txt','w') 
+txt.write("Blue\n")
+txt.write("4")
+txt.close()
+
 #If no errors on any funnel, all the fans will be set to 100 PWM
 PWM.set_duty_cycle("P8_13",100)
 PWM.set_duty_cycle("P8_19",100)
