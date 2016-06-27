@@ -88,13 +88,9 @@ lcd = LCD.Adafruit_CharLCD(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lcd_d7, lcd_c
 
 #Setup relay control pins
 GPIO.setup("P8_41",GPIO.OUT) #Funnel 1
-GPIO.output("P8_41",GPIO.HIGH)
 GPIO.setup("P8_42",GPIO.OUT) #Funnel 2
-GPIO.output("P8_42",GPIO.HIGH)
 GPIO.setup("P8_43",GPIO.OUT) #Funnel 3
-GPIO.output("P8_43",GPIO.HIGH)
 GPIO.setup("P8_44",GPIO.OUT) #Funnel 4
-GPIO.output("P8_44",GPIO.HIGH)
 #print("Realy Control Pin Setup Complete")
 
 #Set up LED control
@@ -151,7 +147,7 @@ lcd.message("Testing:\nFunnel 1\nPress ENTER to Start")
 raw_input("Testing Funnel 1 Press ENTER to Start")
 
 #Turn on funnel 1
-GPIO.output("P8_41",GPIO.LOW)
+GPIO.output("P8_41",GPIO.HIGH)
 
 #Wait till fans are at 0 PWM RPM
 lcd.clear()
@@ -184,7 +180,7 @@ print(Count_F1_1/2)
 print(Count_F1_2/2)
 
 #Turn off funnel 1
-GPIO.output("P8_41",GPIO.HIGH)
+GPIO.output("P8_41",GPIO.LOW)
 
 ######################################################################################
 
@@ -194,7 +190,7 @@ lcd.message("Testing:\nFunnel 2\nPress ENTER to Start")
 raw_input("Testing Funnel 2 Press ENTER to Start")
 
 #Turn on funnel 2
-GPIO.output("P8_42",GPIO.LOW)
+GPIO.output("P8_42",GPIO.HIGH)
 
 #Wait till fans are at 0 PWM RPM
 lcd.clear()
@@ -227,7 +223,7 @@ print(Count_F2_1/2)
 print(Count_F2_2/2)
 
 #Turn off funnel 2
-GPIO.output("P8_42",GPIO.HIGH)
+GPIO.output("P8_42",GPIO.LOW)
 
 #Throw error if either fan does not spin between 50 and 53 Hz
 #if Count_F2_1/2 < 50 or Count_F2_1/2 > 53:
@@ -250,7 +246,7 @@ lcd.message("Testing:\nFunnel 3\nPress ENTER to Start")
 raw_input("Testing Funnel 3 Press ENTER to Start")
 
 #Turn on funnel 3
-GPIO.output("P8_43",GPIO.LOW)
+GPIO.output("P8_43",GPIO.HIGH)
 
 #Wait till fans are at 0 PWM RPM
 lcd.clear()
@@ -283,7 +279,7 @@ print(Count_F3_1/2)
 print(Count_F3_2/2)
 
 #Turn off funnel 3
-GPIO.output("P8_43",GPIO.HIGH)
+GPIO.output("P8_43",GPIO.LOW)
 
 ######################################################################################
 
@@ -293,7 +289,7 @@ lcd.message("Testing:\nFunnel 4\nPress ENTER to Start")
 raw_input("Testing Funnel 4 Press ENTER to Start")
 
 #Turn on funnel 4
-GPIO.output("P8_44",GPIO.LOW)
+GPIO.output("P8_44",GPIO.HIGH)
 
 #Wait till fans are at 0 PWM RPM
 lcd.clear()
@@ -326,7 +322,7 @@ print(Count_F4_1/2)
 print(Count_F4_2/2)
 
 #Turn off funnel 4
-GPIO.output("P8_44",GPIO.HIGH)
+GPIO.output("P8_44",GPIO.LOW)
 
 ######################################################################################
 

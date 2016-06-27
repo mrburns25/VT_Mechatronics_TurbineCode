@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 #Creation Date: 02/24/2016
-#Last Edited: 06/01/2016
+#Last Edited: 06/27/2016
 #Author: Clinton Burns
 
 #This code will control the fans and check for
@@ -62,13 +62,9 @@ Count_F4_2 = 0 #Number of rises and falls in TAC signal for F4_2
 
 #Set up relay control pins
 GPIO.setup("P8_41",GPIO.OUT) #Funnel 1
-GPIO.output("P8_41",GPIO.HIGH)
 GPIO.setup("P8_42",GPIO.OUT) #Funnel 2
-GPIO.output("P8_42",GPIO.HIGH)
 GPIO.setup("P8_43",GPIO.OUT) #Funnel 3
-GPIO.output("P8_43",GPIO.HIGH)
 GPIO.setup("P8_44",GPIO.OUT) #Funnel 4
-GPIO.output("P8_44",GPIO.HIGH)
 
 #Start PWM pins
 #PWM.start(Channel, duty cycle, frequency)
@@ -101,7 +97,7 @@ txt.close()
 #code and then terminate.
 
 #Turn on funnel 1
-GPIO.output("P8_41",GPIO.LOW)
+GPIO.output("P8_41",GPIO.HIGH)
 
 #Wait till fans are at 0 PWM RPM
 time.sleep(7) #Seconds
@@ -173,7 +169,7 @@ txt.write("1")
 txt.close()
 
 #Turn on Funnel 2
-GPIO.output("P8_42",GPIO.LOW)
+GPIO.output("P8_42",GPIO.HIGH)
 
 #Wait till fans are at 0 PWM RPM
 time.sleep(7) #Seconds
@@ -244,7 +240,7 @@ txt.write("2")
 txt.close()
 
 #Turn on Funnel 3
-GPIO.output("P8_43",GPIO.LOW)
+GPIO.output("P8_43",GPIO.HIGH)
 
 #Wait till fans are at 0 PWM RPM
 time.sleep(7) #Seconds
@@ -315,7 +311,7 @@ txt.write("3")
 txt.close()
 
 #Turn on Funnel 4
-GPIO.output("P8_44",GPIO.LOW)
+GPIO.output("P8_44",GPIO.HIGH)
 
 #Wait till fans are at 0 PWM RPM
 time.sleep(7) #Seconds

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 #Creation Date: 05/31/2016
-#Last Edited: 06/01/2016
+#Last Edited: 06/27/2016
 #Author: Clinton Burns
 
 #This code will control the fans and check for
@@ -16,13 +16,9 @@ import sys
 
 #Set up relay control pins
 GPIO.setup("P8_41",GPIO.OUT) #Funnel 1
-GPIO.output("P8_41",GPIO.HIGH)
 GPIO.setup("P8_42",GPIO.OUT) #Funnel 2
-GPIO.output("P8_42",GPIO.HIGH)
 GPIO.setup("P8_43",GPIO.OUT) #Funnel 3
-GPIO.output("P8_43",GPIO.HIGH)
 GPIO.setup("P8_44",GPIO.OUT) #Funnel 4
-GPIO.output("P8_44",GPIO.HIGH)
 
 #Start PWM pins
 #PWM.start(Channel, duty cycle, frequency)
@@ -37,20 +33,20 @@ PWM.start("P9_16",0,25000) #Funnel 4
 #Makes LED go blue indicating fans are starting
 #Also indicate in Demo Mode so info #5 
 txt = open('/usr/PythonCode/RunLog.txt','w') 
-txt.write("Blue")
+txt.write("Blue\n")
 txt.write("5")
 txt.close()
 
 ######################################################################################
 
 #Stager start funnels
-GPIO.output("P8_41",GPIO.LOW)
+GPIO.output("P8_41",GPIO.HIGH)
 time.sleep(1)
-GPIO.output("P8_42",GPIO.LOW)
+GPIO.output("P8_42",GPIO.HIGH)
 time.sleep(1)
-GPIO.output("P8_43",GPIO.LOW)
+GPIO.output("P8_43",GPIO.HIGH)
 time.sleep(1)
-GPIO.output("P8_44",GPIO.LOW)
+GPIO.output("P8_44",GPIO.HIGH)
 time.sleep(1)
 
 ######################################################################################
