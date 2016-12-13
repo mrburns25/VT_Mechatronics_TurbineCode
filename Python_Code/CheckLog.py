@@ -71,7 +71,7 @@ if(os.path.isfile('/usr/local/Turbine/YAML_Files/Error_Codes.yaml') != 1):
     
     #Exit
     sys.exit()
-else
+else:
     error_codes_file = open('/usr/local/Turbine/YAML_Files/Error_Codes.yaml')
     error_codes = yaml.safe_load(error_codes_file)
     error_codes_file.close()
@@ -91,7 +91,7 @@ if(os.path.isfile('/usr/local/Turbine/YAML_Files/Status_Info.yaml') != 1):
     
     #Exit
     sys.exit()
-else
+else:
     status_info_file = open('/usr/local/Turbine/YAML_Files/Status_Info.yaml')
     status_info = yaml.safe_load(status_info_file)
     status_info_file.close()
@@ -111,7 +111,7 @@ if(os.path.isfile('/usr/local/Turbine/YAML_Files/Log_Paths.yaml') != 1):
     
     #Exit
     sys.exit()
-else
+else:
     #Set log path file from yaml
     log_paths_file = open('/usr/local/Turbine/YAML_Files/Log_Paths.yaml')
     log_paths = yaml.safe_load(log_paths_file)
@@ -134,7 +134,7 @@ else
         
         #Exit
         sys.exit()
-    elif(os.path.isfile(systemlog_path) != 1)
+    elif(os.path.isfile(systemlog_path) != 1):
         #Display message on LCD
         lcd.clear()
         lcd.message("FATAL ERROR\nSystemLog.txt\nNot Found")
