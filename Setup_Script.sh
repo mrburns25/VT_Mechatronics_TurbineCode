@@ -352,21 +352,21 @@ fi
 
 # RunCheckLog.sh
 
-echo "Copying RunCheckLog.sh to /bin...[]"
+echo "Copying RunLogCheck.sh to /bin...[]"
 
-if [[ ! -e /bin/RunCheckLog.sh ]]; then
+if [[ ! -e /bin/RunLogCheck.sh ]]; then
 
-    cp $(pwd)/Bash_Code/RunCheckLog.sh /bin
+    cp $(pwd)/Bash_Code/RunLogCheck.sh /bin
 
     # Check that it copied
 
-    if [[ -e /bin/RunCheckLog.sh ]]; then
+    if [[ -e /bin/RunLogCheck.sh ]]; then
 
-        echo "Copying RunCheckLog.sh to /bin...[True]"
+        echo "Copying RunLogCheck.sh to /bin...[True]"
 
     else
 
-        echo "Copying RunCheckLog.sh to /bin...[False]"
+        echo "Copying RunLogCheck.sh to /bin...[False]"
 
     fi
 
@@ -434,7 +434,7 @@ if [[ ! -e /etc/init/CheckLog.conf ]]; then
 
     # Check to make sure copied
 
-    if [[ -e /etc/init/CheckLog ]]; then
+    if [[ -e /etc/init/CheckLog.conf ]]; then
 
         echo "Copying CheckLog.conf to /etc/init...[True]"
 
@@ -450,19 +450,19 @@ fi
 
 # rtc-ds1307.conf
 
-echo "Copying rtc-ds1307.conf to /etc/init...[]"
+echo "Copying rtc_ds1307.conf to /etc/init...[]"
 
-if [[ ! -e /etc/init/rtc-ds1307.conf ]]; then
+if [[ ! -e /etc/init/rtc_ds1307.conf ]]; then
 
-    cp $(pwd)/Conf_Files/rtc-ds1307.conf /etc/init
+    cp $(pwd)/Conf_Files/rtc_ds1307.conf /etc/init
 
     # Check to make sure copied
 
-    if [[ -e /etc/init/rtc-ds1307.conf ]]; then
+    if [[ -e /etc/init/rtc_ds1307.conf ]]; then
 
         echo "Copying rtc-ds1307.conf to /etc/init...[True]"
 
-        service rtc-ds1307 start
+        service rtc_ds1307 start
 
     else
 
