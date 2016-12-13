@@ -22,7 +22,7 @@ import sys
 import yaml
 
 #Function to write to system log
-write_systemlog(log_message, path):
+def write_systemlog(log_message, path):
     #Get current time in readable form
     time = time.asctime(time.localtime(time.time()))
     
