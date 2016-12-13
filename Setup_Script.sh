@@ -380,7 +380,7 @@ echo "Making rtc-ds1307 dir in /usr/share...[]"
 
 if [[ ! -d /usr/share/rtc-ds1307 ]]; then
 
-    sudo mkdir /usr/share/rtc-ds1307
+    mkdir /usr/share/rtc-ds1307
 
     # Check to make sure directory made
 
