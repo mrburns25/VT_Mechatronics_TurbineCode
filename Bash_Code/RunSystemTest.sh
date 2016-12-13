@@ -18,7 +18,7 @@ sleep 1
 
 #Check to make sure start up was complete
 if ps aux | grep -q '[C]heckLog.py'; then
-	echo 'CheckLog.py Start Successful'
+    echo 'CheckLog.py Start Successful'
 else
-	echo 'CheckLog.py Failed to Start'
+    echo 'CheckLog.py Failed to Start'
 fi
