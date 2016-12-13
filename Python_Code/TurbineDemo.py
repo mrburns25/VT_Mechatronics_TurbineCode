@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 #Creation Date: 05/31/2016
-#Last Edited: 12/12/2016
+#Last Edited: 12/13/2016
 #Author: Clinton Burns
 
 #This code will control the fans for a demo.
@@ -23,7 +23,7 @@ log_paths_file.close()
 runlog_path = log_paths['RunLog']
 
 #Open yaml file and read in data
-file = open('/usr/PythonCode/Funnel_Setup.yaml')
+file = open('/usr/local/Turbine/YAML_Files/Funnel_Setup.yaml')
 funnel_setup = yaml.safe_load(file)
 file.close()
 

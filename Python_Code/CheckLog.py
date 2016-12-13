@@ -24,10 +24,10 @@ import yaml
 #Function to write to system log
 def write_systemlog(log_message, path):
     #Get current time in readable form
-    time = time.asctime(time.localtime(time.time()))
+    stamp_time = time.asctime(time.localtime(time.time()))
     
     #Build message
-    log = time + ' ' + log_message
+    log = stamp_time + ' ' + log_message
     
     #Write to file
     txt_file = open(path,'a')

@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 
 #Creation Date: 08/15/2016
-#Last Edited: 08/30/2016
+#Last Edited: 12/13/2016
 #Author: Clinton Burns
 
 #Class for funnel
 
 import Adafruit_BBIO.GPIO as GPIO
-import Adafruit_BBIO.PWM as PWM
+import Adafruit_BBIO.PWM as PWM_Lib
 import time
 
 class Funnel:
@@ -26,7 +26,7 @@ class Funnel:
         
         #Set PWM pin
         #PWM.start(PIN, duty cycle, frequency)
-        PWM.start(PWM,0,25000)
+        PWM_Lib.start(PWM,0,25000)
         
         #Set TAC pins
         GPIO.setup(TAC1, GPIO.IN)
@@ -39,7 +39,7 @@ class Funnel:
         TAC2_Samples = list()
         
         #Sample TAC1
-        for i=0 in range(0,sample_num):
+        for i in range(0,sample_num):
             #Read in TAC value and read TAC till its LOW
             prev_TAC_value = GPIO.input(self.TAC1)
             while prev_TAC_value != 0:
@@ -68,7 +68,7 @@ class Funnel:
             TAC1_Samples.append(Time2 - Time1)
             
         #Sample TAC2
-        for i=0 in range(0,sample_num):
+        for i in range(0,sample_num):
             #Read in TAC value and read TAC till its LOW
             prev_TAC_value = GPIO.input(self.TAC2)
             while prev_TAC_value != 0:
@@ -101,7 +101,7 @@ class Funnel:
         
     #Set the speed of the fans
     def Set_Speed(self, speed):
-        PWM.set_duty_cycle(self.PWM_Pin, speed)
+        PWM_Lib.set_duty_cycle(self.PWM_Pin, speed)
 
     #Turn the funnel on
     def Turn_On(self):
