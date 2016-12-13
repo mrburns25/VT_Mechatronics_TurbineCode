@@ -384,7 +384,7 @@ if [[ ! -d /usr/share/rtc-ds1307 ]]; then
 
     # Check to make sure directory made
 
-    if [[ -e /usr/share/rtc-ds1307 ]]
+    if [[ -e /usr/share/rtc-ds1307 ]]; then
 
         echo "Making rtc-ds1307 dir in /usr/share...[True]"
 
