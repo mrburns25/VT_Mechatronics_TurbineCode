@@ -31,7 +31,7 @@ def write_systemlog(log_message, path):
     
     #Write to file
     txt_file = open(path,'a')
-    txt_file.write(log)
+    txt_file.write(log + '\n')
     txt_file.close()
 
 #Set up LED control

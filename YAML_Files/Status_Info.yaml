@@ -1,9 +1,9 @@
-Test_F1: 'Funnel 1: Testing...\nFunnel 2: Standby\nFunnel 3: Standby\nFunnel 4: Standby'
-Test_F2: 'Funnel 1: Ready\nFunnel 2: Testing...\nFunnel 3: Standby\nFunnel 4: Standby'
-Test_F3: 'Funnel 1: Ready\nFunnel 2: Ready\nFunnel 3: Testing...\nFunnel 4: Standby'
-Test_F4: 'Funnel 1: Ready\nFunnel 2: Ready\nFunnel 3: Ready\nFunnel 4: Testing...'
-Turbine_Ready: 'System Ready\nTurbine Spinning Up'
-Demo_Start: 'Turbine Demo Mode\nManual Ctrl Enabled\nError Checking OFF'
-System_Ready: 'System Start Up Complete. No Errors'
-Stop: 'Turbine Spinning Down'
-Demo_Stop: 'Demo Over. Turbine Spinning Down'
+Test_F1: "Funnel 1: Testing...\nFunnel 2: Standby\nFunnel 3: Standby\nFunnel 4: Standby"
+Test_F2: "Funnel 1: Ready\nFunnel 2: Testing...\nFunnel 3: Standby\nFunnel 4: Standby"
+Test_F3: "Funnel 1: Ready\nFunnel 2: Ready\nFunnel 3: Testing...\nFunnel 4: Standby"
+Test_F4: "Funnel 1: Ready\nFunnel 2: Ready\nFunnel 3: Ready\nFunnel 4: Testing..."
+Turbine_Ready: "System Ready\nTurbine Spinning Up"
+Demo_Start: "Turbine Demo Mode\nManual Ctrl Enabled\nError Checking OFF"
+System_Ready: "System Start Up Complete. No Errors"
+Stop: "Turbine Spinning Down"
+Demo_Stop: "Demo Over. Turbine Spinning Down"
