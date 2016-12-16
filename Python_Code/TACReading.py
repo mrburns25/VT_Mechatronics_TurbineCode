@@ -37,7 +37,7 @@ def Average(sample_results):
     print('TAC2 Average Frequency: ', average)
 
 #Open yaml file and read in data
-file = open('/usr/PythonCode/Funnel_Setup.yaml')
+file = open('/usr/local/Turbine/YAML_Files/Funnel_Setup.yaml')
 funnel_setup = yaml.safe_load(file)
 file.close()
 
@@ -47,12 +47,12 @@ for funnel in funnel_setup.values():
     funnel_list.append(Funnel(funnel['Relay'], funnel['PWM'], funnel['TAC1'], funnel['TAC2']))
     print('Funnel Created')
 
-while(again)
+while(again):
     #Ask user which funnel to test
     usr_ans = input('Funnel # (1-4): ')
     num_of_samples = input('How many samples? ')
     
-    print('Funnel ' + str(usr_ans) + 'Selected\n')
+    print('Funnel ' + str(usr_ans) + ' Selected\n')
     print('Turning on and waiting till idle...\n')
     #Turn on funnel and wait till idle
     funnel_list[usr_ans - 1].Turn_On()

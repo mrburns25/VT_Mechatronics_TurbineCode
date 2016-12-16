@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 #Creation Date: 02/24/2016
-#Last Edited: 12/12/2016
+#Last Edited: 12/16/2016
 #Author: Clinton Burns
 
 #This code will control the fans and check for
@@ -81,6 +81,14 @@ time.sleep(7) #Seconds
 #Take samples of TACs
 funnel_1_TAC = funnel_list[0].Take_Sample(10) 
 
+#Check to see if any error (Take_Sample returns just 1 0)
+if len(funnel_1_TAC['TAC1_Samp']) =1 and len(funnel_1_TAC['TAC2_Samp']) =1:
+        txt = open(runlog_path,'w') 
+        txt.write("Red\n")
+        txt.write("Err_14")
+        txt.close()
+        sys.exit()
+
 #Get avearge. Average frequency is returned
 funnel_1_freq = Average(funnel_1_TAC)
 
@@ -136,7 +144,15 @@ funnel_list[1].Turn_On()
 time.sleep(7) #Seconds
 
 #Take samples of TACs
-funnel_2_TAC = funnel_list[1].Take_Sample(10) 
+funnel_2_TAC = funnel_list[1].Take_Sample(10)
+
+#Check to see if any error (Take_Sample returns just 1 0)
+if len(funnel_1_TAC['TAC1_Samp']) =1 and len(funnel_1_TAC['TAC2_Samp']) =1:
+        txt = open(runlog_path,'w') 
+        txt.write("Red\n")
+        txt.write("Err_14")
+        txt.close()
+        sys.exit() 
 
 #Get avearge. Average frequency is returned
 funnel_2_freq = Average(funnel_2_TAC)
@@ -194,6 +210,14 @@ time.sleep(7) #Seconds
 #Take samples of TACs
 funnel_3_TAC = funnel_list[2].Take_Sample(10) 
 
+#Check to see if any error (Take_Sample returns just 1 0)
+if len(funnel_1_TAC['TAC1_Samp']) =1 and len(funnel_1_TAC['TAC2_Samp']) =1:
+        txt = open(runlog_path,'w') 
+        txt.write("Red\n")
+        txt.write("Err_14")
+        txt.close()
+        sys.exit()
+
 #Get avearge. Average frequency is returned
 funnel_3_freq = Average(funnel_3_TAC)
 
@@ -249,6 +273,14 @@ time.sleep(7) #Seconds
 
 #Take samples of TACs
 funnel_4_TAC = funnel_list[3].Take_Sample(10) 
+
+#Check to see if any error (Take_Sample returns just 1 0)
+if len(funnel_1_TAC['TAC1_Samp']) =1 and len(funnel_1_TAC['TAC2_Samp']) =1:
+        txt = open(runlog_path,'w') 
+        txt.write("Red\n")
+        txt.write("Err_14")
+        txt.close()
+        sys.exit()
 
 #Get avearge. Average frequency is returned
 funnel_4_freq = Average(funnel_4_TAC)

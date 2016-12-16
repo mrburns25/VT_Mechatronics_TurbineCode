@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 #Creation Date: 08/15/2016
-#Last Edited: 12/13/2016
+#Last Edited: 12/16/2016
 #Author: Clinton Burns
 
 #Class for funnel
@@ -41,25 +41,69 @@ class Funnel:
         #Sample TAC1
         for i in range(0,sample_num):
             #Read in TAC value and read TAC till its LOW
-            prev_TAC_value = GPIO.input(self.TAC1)
+            prev_TAC_value = GPIO.input(self.TAC1_Pin)
+            sample_start_time = time.time()
             while prev_TAC_value != 0:
-                prev_TAC_value = GPIO.input(self.TAC1)
+                prev_TAC_value = GPIO.input(self.TAC1_Pin)
+                
+                #Count how long in this loop. If over 5 seconds,
+                #throw an error
+                current_time = time.time()
+                diff_time = current_time - sample_start_time
+                if diff_time > 5:
+                    #Could not detect signal edge
+                    TAC1_Samples.append(0)
+                    TAC2_Samples.append(0)
+                    return {'TAC1_Samp':TAC1_Samples , 'TAC2_Samp':TAC2_Samples}
                 
             #Read in TAC value and read TAC till value its HIGH
-            TAC_Val = GPIO.input(self.TAC1)
+            TAC_Val = GPIO.input(self.TAC1_Pin)
+            sample_start_time = time.time()
             while TAC_Val != 1:
-                TAC_Val = GPIO.input(self.TAC1)
+                TAC_Val = GPIO.input(self.TAC1_Pin)
+                
+                #Count how long in this loop. If over 5 seconds,
+                #throw an error
+                current_time = time.time()
+                diff_time = current_time - sample_start_time
+                if diff_time > 5:
+                    #Could not detect signal edge
+                    TAC1_Samples.append(0)
+                    TAC2_Samples.append(0)
+                    return {'TAC1_Samp':TAC1_Samples , 'TAC2_Samp':TAC2_Samples}
                 
             #Read in time at LOW to HIGH point
             Time1 = time.time()
             
             #Read in TAC value and read TAC till its LOW
+            sample_start_time = time.time()
             while prev_TAC_value != 0:
-                prev_TAC_value = GPIO.input(self.TAC1)
+                prev_TAC_value = GPIO.input(self.TAC1_Pin)
+                
+                #Count how long in this loop. If over 5 seconds,
+                #throw an error
+                current_time = time.time()
+                diff_time = current_time - sample_start_time
+                if diff_time > 5:
+                    #Could not detect signal edge
+                    TAC1_Samples.append(0)
+                    TAC2_Samples.append(0)
+                    return {'TAC1_Samp':TAC1_Samples , 'TAC2_Samp':TAC2_Samples}
                 
             #Read in TAC value and read TAC till value its HIGH
+            sample_start_time = time.time()
             while TAC_Val != 1:
-                TAC_Val = GPIO.input(self.TAC1)
+                TAC_Val = GPIO.input(self.TAC1_Pin)
+                
+                #Count how long in this loop. If over 5 seconds,
+                #throw an error
+                current_time = time.time()
+                diff_time = current_time - sample_start_time
+                if diff_time > 5:
+                    #Could not detect signal edge
+                    TAC1_Samples.append(0)
+                    TAC2_Samples.append(0)
+                    return {'TAC1_Samp':TAC1_Samples , 'TAC2_Samp':TAC2_Samples}
                 
             #Read in time at LOW to HIGH point
             Time2 = time.time()
@@ -70,25 +114,69 @@ class Funnel:
         #Sample TAC2
         for i in range(0,sample_num):
             #Read in TAC value and read TAC till its LOW
-            prev_TAC_value = GPIO.input(self.TAC2)
+            prev_TAC_value = GPIO.input(self.TAC2_Pin)
+            sample_start_time = time.time()
             while prev_TAC_value != 0:
-                prev_TAC_value = GPIO.input(self.TAC2)
+                prev_TAC_value = GPIO.input(self.TAC2_Pin)
+                
+                #Count how long in this loop. If over 5 seconds,
+                #throw an error
+                current_time = time.time()
+                diff_time = current_time - sample_start_time
+                if diff_time > 5:
+                    #Could not detect signal edge
+                    TAC1_Samples.append(0)
+                    TAC2_Samples.append(0)
+                    return {'TAC1_Samp':TAC1_Samples , 'TAC2_Samp':TAC2_Samples}
                 
             #Read in TAC value and read TAC till value its HIGH
-            TAC_Val = GPIO.input(self.TAC2)
+            TAC_Val = GPIO.input(self.TAC2_Pin)
+            sample_start_time = time.time()
             while TAC_Val != 1:
-                TAC_Val = GPIO.input(self.TAC2)
+                TAC_Val = GPIO.input(self.TAC2_Pin)
+                
+                #Count how long in this loop. If over 5 seconds,
+                #throw an error
+                current_time = time.time()
+                diff_time = current_time - sample_start_time
+                if diff_time > 5:
+                    #Could not detect signal edge
+                    TAC1_Samples.append(0)
+                    TAC2_Samples.append(0)
+                    return {'TAC1_Samp':TAC1_Samples , 'TAC2_Samp':TAC2_Samples}
                 
             #Read in time at LOW to HIGH point
             Time1 = time.time()
             
             #Read in TAC value and read TAC till its LOW
+            sample_start_time = time.time()
             while prev_TAC_value != 0:
-                prev_TAC_value = GPIO.input(self.TAC2)
+                prev_TAC_value = GPIO.input(self.TAC2_Pin)
+                
+                #Count how long in this loop. If over 5 seconds,
+                #throw an error
+                current_time = time.time()
+                diff_time = current_time - sample_start_time
+                if diff_time > 5:
+                    #Could not detect signal edge
+                    TAC1_Samples.append(0)
+                    TAC2_Samples.append(0)
+                    return {'TAC1_Samp':TAC1_Samples , 'TAC2_Samp':TAC2_Samples}
                 
             #Read in TAC value and read TAC till value its HIGH
+            sample_start_time = time.time()
             while TAC_Val != 1:
-                TAC_Val = GPIO.input(self.TAC2)
+                TAC_Val = GPIO.input(self.TAC2_Pin)
+                
+                #Count how long in this loop. If over 5 seconds,
+                #throw an error
+                current_time = time.time()
+                diff_time = current_time - sample_start_time
+                if diff_time > 5:
+                    #Could not detect signal edge
+                    TAC1_Samples.append(0)
+                    TAC2_Samples.append(0)
+                    return {'TAC1_Samp':TAC1_Samples , 'TAC2_Samp':TAC2_Samples}
                 
             #Read in time at LOW to HIGH point
             Time2 = time.time()
