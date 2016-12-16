@@ -82,7 +82,7 @@ time.sleep(7) #Seconds
 funnel_1_TAC = funnel_list[0].Take_Sample(10) 
 
 #Check to see if any error (Take_Sample returns just 1 0)
-if len(funnel_1_TAC['TAC1_Samp']) =1 and len(funnel_1_TAC['TAC2_Samp']) =1:
+if len(funnel_1_TAC['TAC1_Samp']) == 1 and len(funnel_1_TAC['TAC2_Samp']) == 1:
         txt = open(runlog_path,'w') 
         txt.write("Red\n")
         txt.write("Err_14")
@@ -147,7 +147,7 @@ time.sleep(7) #Seconds
 funnel_2_TAC = funnel_list[1].Take_Sample(10)
 
 #Check to see if any error (Take_Sample returns just 1 0)
-if len(funnel_1_TAC['TAC1_Samp']) =1 and len(funnel_1_TAC['TAC2_Samp']) =1:
+if len(funnel_1_TAC['TAC1_Samp']) == 1 and len(funnel_1_TAC['TAC2_Samp']) == 1:
         txt = open(runlog_path,'w') 
         txt.write("Red\n")
         txt.write("Err_14")
@@ -211,7 +211,7 @@ time.sleep(7) #Seconds
 funnel_3_TAC = funnel_list[2].Take_Sample(10) 
 
 #Check to see if any error (Take_Sample returns just 1 0)
-if len(funnel_1_TAC['TAC1_Samp']) =1 and len(funnel_1_TAC['TAC2_Samp']) =1:
+if len(funnel_1_TAC['TAC1_Samp']) == 1 and len(funnel_1_TAC['TAC2_Samp']) == 1:
         txt = open(runlog_path,'w') 
         txt.write("Red\n")
         txt.write("Err_14")
@@ -275,7 +275,7 @@ time.sleep(7) #Seconds
 funnel_4_TAC = funnel_list[3].Take_Sample(10) 
 
 #Check to see if any error (Take_Sample returns just 1 0)
-if len(funnel_1_TAC['TAC1_Samp']) =1 and len(funnel_1_TAC['TAC2_Samp']) =1:
+if len(funnel_1_TAC['TAC1_Samp']) == 1 and len(funnel_1_TAC['TAC2_Samp']) == 1:
         txt = open(runlog_path,'w') 
         txt.write("Red\n")
         txt.write("Err_14")
@@ -330,7 +330,7 @@ txt.write("Turbine_Ready")
 txt.close()
 
 #If no errors on any funnel, all the fans will be set to 100 PWM
-for i in range(0:4):
+for i in range(0,4):
     funnel_list[i].Set_Speed(100)
 
 #Run for some time
