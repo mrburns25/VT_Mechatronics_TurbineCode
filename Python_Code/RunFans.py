@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 #Creation Date: 02/24/2016
-#Last Edited: 12/16/2016
+#Last Edited: 12/20/2016
 #Author: Clinton Burns
 
 #This code will control the fans and check for
@@ -14,26 +14,6 @@ import time
 import sys
 import yaml
 import os.path
-
-#Function to average periods and find TAC frequency
-def Average(sample_results):
-    #Add up total in list
-    total = 0
-    for period in sample_results['TAC1_Samp']:
-        total = total + period
-        
-    #Divide by list length to get average
-    TAC1_Average = 1/(total/len(sample_results['TAC1_Samp']))
-    
-    #Add up total in list
-    total = 0
-    for period in sample_results['TAC2_Samp']:
-        total = total + period
-        
-    #Divide by list length to get average
-    TAC2_Average = 1/(total/len(sample_results['TAC2_Samp']))
-    
-    return {'TAC1_Avg':TAC1_Average , 'TAC2_Avg':TAC2_Average}
 
 ######################################################################################
 
@@ -79,18 +59,15 @@ funnel_list[0].Turn_On()
 time.sleep(7) #Seconds
 
 #Take samples of TACs
-funnel_1_TAC = funnel_list[0].Take_Sample(10) 
+funnel_1_TAC = funnel_list[0].Take_Sample() 
 
 #Check to see if any error (Take_Sample returns just 1 0)
-if len(funnel_1_TAC['TAC1_Samp']) == 1 and len(funnel_1_TAC['TAC2_Samp']) == 1:
+if funnel_1_TAC["TAC1_Freq"] == 0 or funnel_1_TAC["TAC2_Freq"] == 0:
         txt = open(runlog_path,'w') 
         txt.write("Red\n")
         txt.write("Err_14")
         txt.close()
         sys.exit()
-
-#Get avearge. Average frequency is returned
-funnel_1_freq = Average(funnel_1_TAC)
 
 #Check to see if any errors with F1_1
 if funnel_1_freq['TAC1_Avg'] < 50 or funnel_1_freq['TAC1_Avg'] > 53:
@@ -144,10 +121,10 @@ funnel_list[1].Turn_On()
 time.sleep(7) #Seconds
 
 #Take samples of TACs
-funnel_2_TAC = funnel_list[1].Take_Sample(10)
+funnel_2_TAC = funnel_list[1].Take_Sample()
 
 #Check to see if any error (Take_Sample returns just 1 0)
-if len(funnel_1_TAC['TAC1_Samp']) == 1 and len(funnel_1_TAC['TAC2_Samp']) == 1:
+if funnel_2_TAC["TAC1_Freq"] == 0 or funnel_2_TAC["TAC2_Freq"] == 0:
         txt = open(runlog_path,'w') 
         txt.write("Red\n")
         txt.write("Err_14")
@@ -208,10 +185,10 @@ funnel_list[2].Turn_On()
 time.sleep(7) #Seconds
 
 #Take samples of TACs
-funnel_3_TAC = funnel_list[2].Take_Sample(10) 
+funnel_3_TAC = funnel_list[2].Take_Sample() 
 
 #Check to see if any error (Take_Sample returns just 1 0)
-if len(funnel_1_TAC['TAC1_Samp']) == 1 and len(funnel_1_TAC['TAC2_Samp']) == 1:
+if funnel_3_TAC["TAC1_Freq"] == 0 or funnel_3_TAC["TAC2_Freq"] == 0:
         txt = open(runlog_path,'w') 
         txt.write("Red\n")
         txt.write("Err_14")
@@ -272,10 +249,10 @@ funnel_list[3].Turn_On()
 time.sleep(7) #Seconds
 
 #Take samples of TACs
-funnel_4_TAC = funnel_list[3].Take_Sample(10) 
+funnel_4_TAC = funnel_list[3].Take_Sample() 
 
 #Check to see if any error (Take_Sample returns just 1 0)
-if len(funnel_1_TAC['TAC1_Samp']) == 1 and len(funnel_1_TAC['TAC2_Samp']) == 1:
+if funnel_4_TAC["TAC1_Freq"] == 0 or funnel_4_TAC["TAC2_Freq"] == 0:
         txt = open(runlog_path,'w') 
         txt.write("Red\n")
         txt.write("Err_14")
