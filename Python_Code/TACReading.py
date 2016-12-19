@@ -25,37 +25,61 @@ for funnel in funnel_setup.values():
 
 while(again):
     #Ask user which funnel to test
-    usr_ans = input('Funnel # (1-4): ')
+    usr_ans = input("Funnel # (1-4): ")
     
-    print('Funnel ' + str(usr_ans) + ' Selected\n')
-    print('Turning on and waiting till idle...\n')
+    print('Funnel ' + str(usr_ans) + ' Selected')
+    print('Turning on...\n')
     #Turn on funnel and wait till idle
     funnel_list[usr_ans - 1].Turn_On()
-    time.sleep(7)
     
-    raw_input('Idle reached. Press Enter to take samples')
-    print('Taking 0 PWM Samples...')
-    #Take samples at 0 PWM
-    pwm0_results = funnel_list[usr_ans - 1].Take_Sample()
+    test_speed = input("Enter Test PWM: ")
+    print("Spinning to desired speed...\n")
+    #PWM wires for F2 and F3 were flipped when wire harness was made
+    #This will fix that mistake
+    if usr_ans == 2:
+        #Send signal through pwm pin for F3
+        funnel_list[2].Set_Speed(test_speed)
+    elif usr_ans == 3:
+        #Send singnal through pwm pin for F2
+        funnel_list[1].Set_Speed(test_speed)
+    else:
+        funnel_list[usr_ans - 1].Set_Speed(test_speed)
     
-    print("TAC1 Freq: " + str(pwm0_results["TAC1_Freq"]) + "\n")
-    print("TAC2 Freq: " + str(pwm0_results["TAC2_Freq"]) + "\n")
+    raw_input('Press Enter to take samples\n')
+    print('Taking ' + str(test_speed) + ' PWM Samples...\n')
     
-    print('Changing to 100 PWM...')
-    #Change to 100 PWM and wait till 100 PWM
-    funnel_list[usr_ans - 1].Set_Speed(100)
-    time.sleep(15)
+    #Make file to write to
+    file_name = "Funnel_" + str(usr_ans) "_" + str(test_speed) + "_PWM_Test.txt"
+    file_path = "/usr/local/Turbine/" + file_name
     
-    print('100 PWM idle reached')
-    print('Taking 100 PWM Samples...')
-    #Take samples at 100 PWM
-    pwm100_results = funnel_list[usr_ans - 1].Take_Sample()
+    print("Writing results to:\n")
+    print(file_path + '\n')
     
-    print("TAC1 Freq: " + str(pwm0_results["TAC1_Freq"] + "\n")
-    print("TAC2 Freq: " + str(pwm0_results["TAC2_Freq"] + "\n")
+    for i in range(0,30):
+        #Take samples at defined PWM
+        pwm_results = funnel_list[usr_ans - 1].Take_Sample()
+        
+        #Write to file
+        data_to_write = str(pwm_results["TAC1_Freq"]) + ',' + str(pwm_results["TAC2_Freq"])
+        file = open(file_path,'a')
+        file.write(data_to_write + '\n')
+        file.close()
+        
+        #Print results
+        print("TAC1 Freq: " + str(pwm_results["TAC1_Freq"]))
+        print("TAC2 Freq: " + str(pwm_results["TAC2_Freq"]) + "\n")
+        
+        #Clear dictionary
+        pwm_results.clear()
+        
+        #Wait 1 sec then read again
+        time.sleep(1)
+    
+    #Turn Funnel off
+    funnel_list[usr_ans - 1].Turn_Off()
     
     #Ask user if want to test new funnel
     #If no, set again to False which will end program
-    y_n_ans = input('Test new funnel?(y/n) ')
-    if str(y_n_ans) == "n":
+    y_n_ans = raw_input('Run Reading Again?(y/n) ')
+    if y_n_ans == 'n':
         again = False
