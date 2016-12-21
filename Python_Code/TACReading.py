@@ -55,7 +55,7 @@ while(again):
     print("Writing results to:\n")
     print(file_path + '\n')
     
-    for i in range(0,30):
+    for i in range(0,100):
         #Take samples at defined PWM
         pwm_results = funnel_list[usr_ans - 1].Take_Sample()
         
