@@ -73,7 +73,7 @@ while(again):
         pwm_results.clear()
         
         #Wait 1 sec then read again
-        time.sleep(1)
+        time.sleep(0.1)
     
     #Turn Funnel off
     funnel_list[usr_ans - 1].Turn_Off()
