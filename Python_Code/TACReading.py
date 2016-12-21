@@ -49,7 +49,7 @@ while(again):
     print('Taking ' + str(test_speed) + ' PWM Samples...\n')
     
     #Make file to write to
-    file_name = "Funnel_" + str(usr_ans) "_" + str(test_speed) + "_PWM_Test.txt"
+    file_name = "Funnel_" + str(usr_ans) + "_" + str(test_speed) + "_PWM_Test.txt"
     file_path = "/usr/local/Turbine/" + file_name
     
     print("Writing results to:\n")
