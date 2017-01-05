@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 #Creation Date: 08/15/2016
-#Last Edited: 012/20/2016
+#Last Edited: 12/20/2016
 #Author: Clinton Burns
 
 #This code is used to calibrate the TAC readings
@@ -50,7 +50,7 @@ while(again):
     
     #Make file to write to
     file_name = "Funnel_" + str(usr_ans) + "_" + str(test_speed) + "_PWM_Test.txt"
-    file_path = "/usr/local/Turbine/" + file_name
+    file_path = "/usr/local/Turbine/TAC_Data/" + file_name
     
     print("Writing results to:\n")
     print(file_path + '\n')
