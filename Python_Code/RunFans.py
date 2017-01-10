@@ -63,11 +63,11 @@ funnel_1_TAC = funnel_list[0].Take_Sample()
 
 #Check to see if any error (Take_Sample returns just 1 0)
 if funnel_1_TAC["TAC1_Freq"] == 0 or funnel_1_TAC["TAC2_Freq"] == 0:
-        txt = open(runlog_path,'w') 
-        txt.write("Red\n")
-        txt.write("Err_14")
-        txt.close()
-        sys.exit()
+    txt = open(runlog_path,'w') 
+    txt.write("Red\n")
+    txt.write("Err_14")
+    txt.close()
+    sys.exit()
 
 #Check to see if any errors with F1_1
 if funnel_1_freq['TAC1_Avg'] < 50 or funnel_1_freq['TAC1_Avg'] > 62:
