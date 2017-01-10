@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 #Creation Date: 02/24/2016
-#Last Edited: 12/20/2016
+#Last Edited: 01/10/2017
 #Author: Clinton Burns
 
 #This code will control the fans and check for
@@ -70,12 +70,12 @@ if funnel_1_TAC["TAC1_Freq"] == 0 or funnel_1_TAC["TAC2_Freq"] == 0:
         sys.exit()
 
 #Check to see if any errors with F1_1
-if funnel_1_freq['TAC1_Avg'] < 50 or funnel_1_freq['TAC1_Avg'] > 53:
+if funnel_1_freq['TAC1_Avg'] < 50 or funnel_1_freq['TAC1_Avg'] > 62:
     #Add error code 1 to error list
     Error_list.append(1)
 
 #Check to see if any errors with F1_2
-if funnel_1_freq['TAC2_Avg'] < 50 or funnel_1_freq['TAC2_Avg'] > 53:
+if funnel_1_freq['TAC2_Avg'] < 48 or funnel_1_freq['TAC2_Avg'] > 60:
     #Add error code 2 to error list
     Error_list.append(2)
 
@@ -135,12 +135,12 @@ if funnel_2_TAC["TAC1_Freq"] == 0 or funnel_2_TAC["TAC2_Freq"] == 0:
 funnel_2_freq = Average(funnel_2_TAC)
 
 #Check to see if any errors with F2_1
-if funnel_2_freq['TAC1_Avg'] < 50 or funnel_2_freq['TAC1_Avg'] > 53:
+if funnel_2_freq['TAC1_Avg'] < 48 or funnel_2_freq['TAC1_Avg'] > 60:
     #Add error code 4 to error list
     Error_list.append(4)
 
 #Check to see if any errors with F2_2
-if funnel_2_freq['TAC2_Avg'] < 50 or funnel_2_freq['TAC2_Avg'] > 53:
+if funnel_2_freq['TAC2_Avg'] < 50 or funnel_2_freq['TAC2_Avg'] > 60:
     #Add error code 5 to error list
     Error_list.append(5)
 
@@ -199,12 +199,12 @@ if funnel_3_TAC["TAC1_Freq"] == 0 or funnel_3_TAC["TAC2_Freq"] == 0:
 funnel_3_freq = Average(funnel_3_TAC)
 
 #Check to see if any errors with F3_1
-if funnel_3_freq['TAC1_Avg'] < 50 or funnel_3_freq['TAC1_Avg'] > 53:
+if funnel_3_freq['TAC1_Avg'] < 48 or funnel_3_freq['TAC1_Avg'] > 59:
     #Add error code 7 to error list
     Error_list.append(7)
 
 #Check to see if any errors with F3_2
-if funnel_3_freq['TAC2_Avg'] < 50 or funnel_3_freq['TAC2_Avg'] > 53:
+if funnel_3_freq['TAC2_Avg'] < 48 or funnel_3_freq['TAC2_Avg'] > 60:
     #Add error code 8 to error list
     Error_list.append(8)
 
@@ -263,12 +263,12 @@ if funnel_4_TAC["TAC1_Freq"] == 0 or funnel_4_TAC["TAC2_Freq"] == 0:
 funnel_4_freq = Average(funnel_4_TAC)
 
 #Check to see if any errors with F4_1
-if funnel_4_freq['TAC1_Avg'] < 50 or funnel_4_freq['TAC1_Avg'] > 53:
+if funnel_4_freq['TAC1_Avg'] < 48 or funnel_4_freq['TAC1_Avg'] > 60:
     #Add error code 10 to error list
     Error_list.append(10)
 
 #Check to see if any errors with F4_2
-if funnel_4_freq['TAC2_Avg'] < 50 or funnel_4_freq['TAC2_Avg'] > 53:
+if funnel_4_freq['TAC2_Avg'] < 48 or funnel_4_freq['TAC2_Avg'] > 60:
     #Add error code 11 to error list
     Error_list.append(11)
 

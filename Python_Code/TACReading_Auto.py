@@ -21,17 +21,17 @@ for funnel in funnel_setup.values():
     print('Funnel Created')
 
 #Output message
-print("This python script will take 100 TAC readings from each fan\n"
-print("at 0 PWM and 100 PWM and record them to the specified file path:\n\n"
+print("This python script will take 100 TAC readings from each fan")
+print("at 0 PWM and 100 PWM and record them to the specified file path:\n")
 print("/usr/local/Turbine/TAC_Data/" + '\n')
-print("Files are formated as Funnel_funnel#_PWMSpeed#_PWM_Test\n")
+print("Files are formated as Funnel_funnel#_PWMSpeed#_PWM_Test.txt")
 raw_input("Press Enter to Start Auto TAC Readings")
 
-for funnel_select in range(0,3):
+for funnel_select in range(0,4):
     print("##########START TEST FUNNEL " + str(funnel_select + 1) + "##########\n")
     #Turn on funnel and wait till idle
     funnel_list[funnel_select].Turn_On()
-    print("Funnel " + str(funnel_select + 1) + "Turned On\n")
+    print("Funnel " + str(funnel_select + 1) + " Turned On\n")
     
     print("Waiting Till 0 PWM Steady State (10 sec)\n")
     #Wait 10 seconds
@@ -44,10 +44,10 @@ for funnel_select in range(0,3):
     
     #PWM wires for F2 and F3 were flipped when wire harness was made
     #This will fix that mistake
-    if funnel_select == 2:
+    if funnel_select == 1:
         #Send signal through pwm pin for F3
         funnel_list[2].Set_Speed(test_speed)
-    elif funnel_select == 3:
+    elif funnel_select == 2:
         #Send singnal through pwm pin for F2
         funnel_list[1].Set_Speed(test_speed)
     else:
@@ -70,6 +70,7 @@ for funnel_select in range(0,3):
         file.close()
         
         #Print results
+        print("Data Point: " + str(i))
         print("TAC1 Freq: " + str(pwm_results["TAC1_Freq"]))
         print("TAC2 Freq: " + str(pwm_results["TAC2_Freq"]) + "\n")
         
@@ -87,10 +88,10 @@ for funnel_select in range(0,3):
     
     #PWM wires for F2 and F3 were flipped when wire harness was made
     #This will fix that mistake
-    if funnel_select == 2:
+    if funnel_select == 1:
         #Send signal through pwm pin for F3
         funnel_list[2].Set_Speed(test_speed)
-    elif funnel_select == 3:
+    elif funnel_select == 2:
         #Send singnal through pwm pin for F2
         funnel_list[1].Set_Speed(test_speed)
     else:
@@ -117,6 +118,7 @@ for funnel_select in range(0,3):
         file.close()
         
         #Print results
+        print("Data Point: " + str(i))
         print("TAC1 Freq: " + str(pwm_results["TAC1_Freq"]))
         print("TAC2 Freq: " + str(pwm_results["TAC2_Freq"]) + "\n")
         
@@ -130,5 +132,5 @@ for funnel_select in range(0,3):
     
     #Turn Funnel off
     funnel_list[funnel_select].Turn_Off()
-    print("Funnel " + str(funnel_select + 1) + "Turned On\n")
+    print("Funnel " + str(funnel_select + 1) + " Turned Off\n")
     print("##########END TEST FUNNEL " + str(funnel_select + 1) + "##########\n")
