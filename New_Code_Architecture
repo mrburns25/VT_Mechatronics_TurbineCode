@@ -1,0 +1,94 @@
+NEW CODE INTERACTION AND OVERALL SCTRUCTURE
+
+The general idea is now to use multiprocess spawning and
+interprocess communication to run the whole system instead
+of reading and writing to a file
+
+Total number of processes: 3
+
+HIGH LEVEL OPERATION
+Parent Process (Turbine_main.py)
+    a. Creates the RunFans process
+    b. Creates user interaction control process
+    c. Check to see when to run the RunFans process
+    d. Handles communication between two child processes
+    
+Child Process 1 (LCD_LED_Ctr.py)
+    a. Reads in status/errors from parent process
+    b. Outputs correct status/error to LCD
+    c. Changes LED color based on status
+    
+Child Process 2 (RunFans.py)
+    a. Controlls the fans to turn turbine
+    b. Spawn 4 child threads to read TACs????
+    c. Will check if fans are running properly
+    d. Sends back status updates to main process
+    e. Sends back error updstes to main process
+    
+MORE DETAIL
+Parent Process (Turbine_main.py)
+    1. Import needed modules
+        a. time
+        b. multiprocess
+            I. Pipe
+            II. Process
+        c. yaml
+        d. APScheduler
+    2. Import main functions from child process
+        a. from LCD_LED_Ctr import LCD_LED_Ctr_main
+        b. from RunFans import RunFans_main
+    3. Read in yaml for wanted schedule
+    4. Create schedule
+    5. Create needed pipes for each child process
+    6. Create process objects for each child process
+    7. Start the LCD_LED_Ctr child process with inital state
+    8. Enter infinte while loop so child process dont die
+    9. Start background scheduler
+    10. When time comes, scheduler calls RunFans
+    11. Wait for message from RunFans (Check every 0.1 sec)
+    12. Send message to LCD_LED_Ctr child process
+    13. Go back to checking for process run event
+
+Child Process 1 (LCD_LED_Ctr.py)
+    1. Import needed modules
+        a. Adafruit_BBIO
+            I. GPIO as GPIO
+        b. Adafruit_CharLCD as LCD
+        c. time
+        d. yaml
+    2. Set up all needed pins
+        a. GPIO pins for LEDS
+        b. Pins for LCD
+    3. Create LCD object
+    4. Read in status info yaml file
+    5. Read in error info yaml file
+    6. Check to see if funnel yaml file exists
+    7. Update LED based on initial state sent from Parent Process
+    8. Update LCD based on initial state sent from Parent Process
+    9. Enter infinite while loop 
+    10. Check if message from Parent Process
+        a. If message, go to 11.
+        b. If no message, wait 0.1 sec and check again
+    11. Read in message
+    12. Change LED based on message
+    13. Change LCD based on message
+    14. Write to System Log status of system
+    15. Wait for new message from Parent Process
+
+Child Process 2 (RunFans.py)
+    1. Import needed modules
+        a. Adafruit_BBIO
+            I. GPIO as GPIO
+            II. PWM as PWM
+        b. Funnel class
+        c. yaml
+    2. Read in funnel yaml file
+    3. Make funnel objects
+    4. Send status to Parent Process
+    5. Turn on and test each funnel
+    6. Send status to Parent Prcoess after each funnel is tested
+    7. Send status that turbine is spining up
+    8. Wait till after some desired time has passed
+    9. Send status that process is ending
+    10. Clean up GPIO and PWM pins
+    11. Process ends

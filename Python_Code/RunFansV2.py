@@ -45,6 +45,13 @@ Error = 0
 #If there is an error in any fan, the program will throw the correct error 
 #code and then terminate.
 
+#Open file and write status
+#Makes LED go blue and set to info to Test_F1
+txt = open(runlog_path,'w') 
+txt.write("Blue\n")
+txt.write("Test_F1")
+txt.close()
+
 #Turn on funnel 1
 funnel_list[0].Turn_On()
 

@@ -36,11 +36,13 @@ class Funnel:
     def Take_Sample(self):
         #Take TAC1 sample for 1 sec
         start_time = time.time()
-        diff_time = 0;
+        diff_time = 0
+        GPIO.setup(TAC1, GPIO.IN)
         prev_pin_state = GPIO.input(self.TAC1_Pin)
         TAC1_count = 0
         while diff_time < 1:
             #Check state of pin
+            GPIO.setup(TAC1, GPIO.IN)
             current_pin_state = GPIO.input(self.TAC1_Pin)
             
             if current_pin_state != prev_pin_state:
